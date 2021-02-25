@@ -1,0 +1,24 @@
+أغس 30, 2014 5:56:58 م biz.DirServerLog log
+INFO: DirServer Started Successfully!
+أغس 30, 2014 5:57:08 م biz.DirServerLog log
+INFO: New Client from /127.0.0.1 Accpeted
+أغس 30, 2014 5:57:09 م biz.DirServerLog log
+INFO: The user:null The Command:Create.
+أغس 30, 2014 5:57:12 م biz.DirServerLog log
+INFO: The user:null The Command:Find.
+أغس 30, 2014 5:57:15 م biz.DirServerLog log
+INFO: New Client from /127.0.0.1 Accpeted
+أغس 30, 2014 5:57:15 م biz.DirServerLog log
+INFO: The user:null The Command:Find.
+أغس 30, 2014 5:57:18 م biz.DirServerLog log
+INFO: The user:null The Command:Create.
+أغس 30, 2014 5:57:21 م biz.DirServerLog log
+INFO: The user:null The Command:Find.
+أغس 30, 2014 5:57:24 م biz.DirServerLog log
+INFO: The user:null The Command:Close Connection.
+أغس 30, 2014 5:57:27 م biz.DirServerLog log
+INFO: The user:null The Command:Create.
+أغس 30, 2014 5:57:29 م biz.DirServerLog log
+INFO: The user:null The Command:Find.
+أغس 30, 2014 5:57:31 م biz.DirServerLog log
+INFO: The user:null The Command:Close Connection.

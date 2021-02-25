@@ -1,0 +1,100 @@
+/* 
+*- _hypub.css
+*-
+*- hyPub 1.12
+*- Copyright (c) 2010 by Dr. Herong Yang. All rights reserved.
+*/
+
+div.body {margin: auto; width: 1000px;}
+@media (max-width: 880px) {
+   td.frameRight {display: none;}
+   div.body {margin: auto; width: 780px;}
+   }
+
+table.frame {width: 780px; height: 100px; border: 0pt solid transparent; margin-left: 0px; padding: 0px; background-color: transparent;}
+table.pageBorder {width: 780px; height: 100px;	border: 0px solid red; padding: 0px; background-color: #ffffff;}
+td.page_line {width: 728px; height: 1px;}
+table.page {border: 0pt solid red; padding-top: 14px; padding-bottom: 14px; padding-left: 24px;	padding-right: 24px; background-color: #fbfbfb;}
+@media (max-width: 680px) {
+   div.body {margin: auto; width: 580px;}
+   td.pageLeft {display: none;}
+   table.frame {width: 580px; height: 100px; border: 0pt solid transparent; margin-left: 0px; padding: 0px; background-color: transparent;}
+   table.pageBorder {width: 580px; height: 100px;	border: 0px solid red; padding: 0px; background-color: #ffffff;}
+   td.pageLine {width: 558px; height: 2px; margin: 0px; padding: 0px; background-color: #000000;}
+   table.page {border: 0pt solid red; padding-top: 4px; padding-bottom: 4px; padding-left: 9px;	padding-right: 9px; background-color: #fbfbfb;}
+   }
+
+body {background-color: #a0a0a0; margin: 0px; font-family: 'verdana'; font-size: 12px;}
+
+p {margin: 18px 0px 4px 0px; font-family: 'verdana'; font-size: 12px; line-height: 150%}
+
+td {font-family: 'verdana'; font-size: 12px;}
+
+ul {margin-top: 0px; margin-bottom: 0px; list-style-type: disc;}
+li {margin-top: 8px; line-height: 150%}
+
+/* Hide variables */
+p.variable {display: none;}
+
+/* Book elements */
+p.tocTitle {background-color: #cfcfcf; margin: 10px 0px 0px 0px; padding: 8px 0px 0px 0px; font-weight: bold; font-size: 20px; text-align: center;}
+p.tocVersion {background-color: #cfcfcf; margin: 0px 0px 0px 0px; padding: 6px 0px 0px 0px; font-weight: bold; font-size: 14px; text-align: center;}
+p.tocDate {background-color: #cfcfcf; margin: 0px 0px 0px 0px; padding: 6px 0px 0px 0px; font-weight: bold; font-size: 14px; text-align: center;}
+p.tocAuthor {background-color: #cfcfcf; margin: 0px 0px 0px 0px; padding: 6px 0px 0px 0px; font-weight: bold; font-size: 14px; text-align: center;}
+p.tocCopyright {background-color: #cfcfcf; margin: 0px 0px 0px 0px; padding: 6px 0px 0px 0px; font-weight: bold; font-size: 14px; text-align: center;}
+p.tocHomeUrl {background-color: #cfcfcf; margin: 0px 0px 0px 0px; padding: 6px 0px 0px 0px; font-weight: bold; font-size: 14px; text-align: center;}
+
+p.pageTitle {background-color: #cfcfcf; margin: 8px 0px 0px 0px; padding: 8px 8px 8px 8px; font-weight: bold; font-size: 18px;}
+p.pageDescription {font-style: italic;}
+p.navIndex {margin: 0px; padding: 4px 4px 4px 4px; font-weight: bold;}
+p.navChapter {margin: 0px; padding: 4px 4px 4px 4px; font-weight: bold;}
+span.navUp1 {margin: 0px; padding: 0px 2px 0px 2px; font-weight: bold; font-size: 14px; vertical-align: top; color: blue;}
+span.navUp2 {margin: 0px; padding: 0px 2px 0px 16px; font-weight: bold; font-size: 14px; vertical-align: top; color: blue;}
+
+p.blockTitle {background-color: #cfcfcf; margin: 18px 0px 0px 0px; padding: 4px 4px 4px 4px; font-weight: bold; font-size: 16px;}
+pre.source {font-family: 'new courier', monospace; font-size: 13px; background-color: #e8e8e8; margin: 4px 0px 4px 0px;	border: 10px; color: black; padding: 5px; width: 558px;}
+pre.source_85 {font-family: 'new courier', monospace; font-size: 10px; background-color: #e8e8e8; margin: 4px 0px 4px 0px;	border: 10px; color: black; padding: 5px; width: 558px;}
+
+blockquote.bookToc {margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px;}
+blockquote.chapterToc {margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px;}
+
+p.bookToc {margin: 8px 25px 0px 0px; font-weight: bold;}
+p.chapterToc {margin: 8px 50px 0px 20px; font-weight: bold;}
+span.dotOff {margin: 0px; padding: 0px 12px 0px 0px; font-weight: bold; font-size: 14px; color: blue;}
+span.dotOn {margin: 0px; padding: 0px 2px 0px 0px; font-weight: bold; font-size: 14px; color: blue;}
+
+/* The frames outside the page. frameCenter contains the page. */
+td.frameTop {border-width: 0px;	background-color: #a0a0a0;}
+td.frameLeft {background-color: #fbfbfb; vertical-align: top;}
+td.frameCenter {border-width: 0px; background-color: #a0a0a0; vertical-align: top; width: 650px; height: 200px; padding-left: 0px; background-color: #fbfbfb;}
+td.frameRight {background-color: #fbfbfb; vertical-align: top;}
+td.frameBottom {border-width: 0px; background-color: #a0a0a0;}
+
+/* The page is the entire surface of the page. td.body is text area. */
+td.body {padding-top: 2px; padding-bottom: 2px;}
+
+/* The page is divided into two columns. */
+td.pageLeft {width: 170px; vertical-align: top; padding-top: 10px;}
+td.pageRight {width: 558px; vertical-align: top; padding-top: 10px;}
+
+/* The keys and descriptions in the side frames. */
+p.sideKey {font-family: 'verdana'; font-weight: bold; font-size: 10px; margin: 7px 3px 0px 3px;}
+p.sideDes {font-family: 'verdana'; font-size: 10px; margin: 2px 3px 6px 3px;}
+
+/* Misc elements */
+p.author {font-weight: bold; font-size: 10px;}
+p.copyright {text-align: right; font-style: italic; font-size: 12px;}
+p.syndication {margin: 4px 0px 0px 0px; padding: 0px; text-align: right;}
+p.search {margin: 0px 0px 0px 0px; padding: 0px;}
+p.picture {background-color: #bfbfbf; text-align: center; margin: 4px 0px 4px 0px; border: 10px; padding: 10px; width: 558px;}
+form {margin: 0px 0px 0px 0px; padding: 0px;}
+
+/* Right menu items */
+p.g_key {font-family: 'verdana'; font-weight: bold; font-size: 10px; margin-top: 7px; margin-left: 3px; margin-right: 3px; margin-bottom: 0px;}
+p.g_des {font-family: 'verdana'; font-size: 10px; margin-top: 2px; margin-left: 3px; margin-right: 3px; margin-bottom: 6px;}
+
+/* Icon in a link */
+a img {border: 0; margin: 0px 4px 0px 0px;}
+
+span.small {font-size: 10px;}
+

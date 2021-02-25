@@ -1,0 +1,202 @@
+<!--?xml version="1.0" encoding="UTF-8"?-->
+<html><head><title>Inserting BLOB Values with setBinaryStream() Method</title><meta content="This section describes how to insert BLOB values with the PreparedStatement.setBinaryStream() method." name="description"><meta content="MySQL, Java, JDBC, BLOB, Large, Object, setBinaryStream" name="keywords"><meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport"><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"><link href="Inserting%20BLOB%20Values%20with%20setBinaryStream%28%29%20Method_files/_hypub.css" type="text/css" rel="stylesheet"><script src="Inserting%20BLOB%20Values%20with%20setBinaryStream%28%29%20Method_files/_upper.js" type="text/javascript">x=1;</script><script src="Inserting%20BLOB%20Values%20with%20setBinaryStream%28%29%20Method_files/_hypub.js" type="text/javascript">x=1;</script></head><body><div class="body"><table class="frame" cellpadding="0" cellspacing="0"><tbody><tr><td colspan="3" class="frameTop"><script language="JavaScript">writeTop("http://www.herongyang.com/JDBC/", "MySQL-BLOB-setBinaryStream.html");</script></td></tr><tr><td class="frameLeft"><script language="JavaScript">writeLeft("http://www.herongyang.com/JDBC/", "MySQL-BLOB-setBinaryStream.html");</script></td><td class="frameCenter"><table class="pageBorder" cellpadding="0" cellspacing="0"><tbody><tr><td colspan="3" height="1"><img src="Inserting%20BLOB%20Values%20with%20setBinaryStream%28%29%20Method_files/_dot.gif" height="1" width="100%"></td></tr><tr><td rowspan="1" width="1"><img src="Inserting%20BLOB%20Values%20with%20setBinaryStream%28%29%20Method_files/_dot.gif" height="100%" width="1"></td><td><table class="page" cellpadding="0" cellspacing="0"><tbody><tr><td><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td colspan="3"><b>JDBC Tutorials - Herong's Tutorial Examples</b> - <span class="small">Version 2.21, by Dr. Herong Yang</span></td></tr><tr><td colspan="3" align="right"><script language="JavaScript">writeMenu("http://www.herongyang.com/JDBC/", "MySQL-BLOB-setBinaryStream.html");</script><b><a href="http://www.herongyang.com/index.html"><img src="Inserting%20BLOB%20Values%20with%20setBinaryStream%28%29%20Method_files/favicon.ico" border="0" align="absmiddle"></a> [ <a href="http://www.herongyang.com/index.html">Home</a> | <a href="http://www.herongyang.com/site_map.html">Site Map</a> | <a href="http://www.herongyang.com/search.html">Search</a> | <a href="http://www.herongyang.com/comments/?TopicID=2">Comments</a> ]&nbsp; &nbsp; [ <a href="http://www.herongyang.com/JDBC/pdf.html">PDF</a> | <a href="http://www.herongyang.com/JDBC/atom.xml">RSS</a> | <a href="http://www.herongyang.com/JDBC/index.html">Index</a> ]</b></td></tr><tr><td colspan="3" class="pageLine"><img src="Inserting%20BLOB%20Values%20with%20setBinaryStream%28%29%20Method_files/_dot.gif" height="1" width="100%"></td></tr><tr><td colspan="3" class="body"><table><tbody><tr><td class="pageLeft"><script language="JavaScript">bannerLeft("");</script><script src="Inserting%20BLOB%20Values%20with%20setBinaryStream%28%29%20Method_files/show_ads.htm" type="text/javascript">x=1;</script><script language="JavaScript">writePageLeft("http://www.herongyang.com/JDBC/", "MySQL-BLOB-setBinaryStream.html");</script><img src="Inserting%20BLOB%20Values%20with%20setBinaryStream%28%29%20Method_files/_dot.gif" height="1" width="160"><p class="g_key"><a href="http://www.herongyang.com/2013">Chinese Calendar 2013</a></p><p class="g_key"><a href="http://www.herongyang.com/2014">Chinese Calendar 2014</a></p><p class="g_key"><a href="http://www.herongyang.com/2015">Chinese Calendar 2015</a></p><p class="g_key"><a href="http://www.herongyang.com/chinese/festivals/">Chinese Festivals</a></p><p class="g_key"><a href="http://www.herongyang.com/chinese/">More on Chinese Culture</a></p><p class="g_key"><a href="http://www.herongyang.com/year/">More Chinese Calendars</a></p><p class="g_des">200 Years: 1901 to 2100</p><img src="Inserting%20BLOB%20Values%20with%20setBinaryStream%28%29%20Method_files/_dot.gif" height="1" width="160"><p class="g_key"><a href="http://www.herongyang.com/Chinese-Calendar/">Chinese Calendar - Mobile</a></p><p class="g_key"><a href="http://www.herongyang.com/Chinese-English-Dictionary/">Chinese-English Dictionary</a></p><p class="g_key"><a href="http://www.herongyang.com/Chinese-Pinyin-Translator/">Chinese-Pinyin Translator</a></p><p class="g_key"><a href="http://www.herongyang.com/chinese/Movies-Films/">Best Chinese Movies</a></p><p class="g_key"><a href="http://www.herongyang.com/chinese/TV-Series/">Best Chinese TV Series</a></p><p class="g_key"><a href="http://www.herongyang.com/chinese/Music/">Best Chinese Music</a></p><p class="g_des">Traditional and Modern</p></td><td class="pageRight">
+<!-- section start -->
+
+
+
+
+
+<p class="navIndex"><a href="http://www.herongyang.com/JDBC/index.html">JDBC Tutorials - Herong's Tutorial Examples</a></p>
+<p class="navChapter"><span class="navUp1">∟</span><a href="http://www.herongyang.com/JDBC/MySQL-BLOB-Large-Object.html">MySQL BLOB (Binary Large Object) - BLOB</a></p>
+<p class="pageTitle"><span class="navUp2">∟</span>Inserting BLOB Values with setBinaryStream() Method</p>
+<p class="pageDescription">This section describes how to insert BLOB values with the PreparedStatement.setBinaryStream() method.</p>
+
+<script language="JavaScript">bannerTop("");</script><script src="Inserting%20BLOB%20Values%20with%20setBinaryStream%28%29%20Method_files/show_ads.htm" type="text/javascript">x=1;</script>
+
+<p>If you want to insert the entire content of a binary file into a BLOB
+ column, you should create an InputStream object from this file, 
+and use the PreparedStatement.setBinaryStream() method to pass the 
+binary file content to the BLOB column through the InputStream object.
+There are 3 versions of the setBinaryStream() method, two of them were 
+added as part of JDBC 4.0 (Java 1.6). 
+Your JDBC driver may not support them: 
+</p>
+<ul>
+<li>setBinaryStream(int parameterIndex, InputStream x) - The data will 
+be read from the InputStream as needed until end-of-file is reached. 
+This was added in JDBC 4.0 (Java 1.6).
+</li>
+<li>setBinaryStream(int parameterIndex, InputStream x, int length) - The
+ data will be read from the InputStream as needed for "length" bytes. 
+</li>
+<li>setBinaryStream(int parameterIndex, InputStream x, long length) - 
+The data will be read from the InputStream as needed for "length" bytes.
+ 
+This was added in JDBC 4.0 (Java 1.6).
+</li>
+</ul>
+
+<p>To test those setBinaryStream() methods, wrote the following program:
+</p>
+<pre class="source">/**
+ * MySqlBlobSetBinaryStream.java
+ * Copyright (c) 2007 by Dr. Herong Yang. All rights reserved.
+ */
+import java.io.*;
+import java.sql.*;
+public class MySqlBlobSetBinaryStream {
+  public static void main(String [] args) {
+    Connection con = null;
+    try {
+      com.mysql.jdbc.jdbc2.optional.MysqlDataSource ds 
+        = new com.mysql.jdbc.jdbc2.optional.MysqlDataSource();
+      ds.setServerName("localhost");
+      ds.setPortNumber(3306);
+      ds.setDatabaseName("HerongDB");
+      ds.setUser("Herong");
+      ds.setPassword("TopSecret");
+      con = ds.getConnection();
+
+// Deleting the record for re-testing
+      String subject = "Test of setBinaryStream() methods";
+      Statement sta = con.createStatement(); 
+      sta.executeUpdate("DELETE FROM Image WHERE Subject = '"
+        +subject+"'");
+
+// Inserting CLOB value with a PreparedStatement
+      PreparedStatement ps = con.prepareStatement(
+        "INSERT INTO Image (Subject, Body) VALUES (?,?)");
+      ps.setString(1, subject);
+      InputStream bodyIn = 
+        new FileInputStream("MySqlBlobSetBinaryStream.class");
+
+// Test 1 - This will not work with JDBC 3.0 drivers
+//    ps.setBinaryStream(2, bodyIn);
+
+// Test 2 - This will not work with JDBC 3.0 drivers
+//    File fileIn = new File("MySqlBlobSetBinaryStream.class");
+//    ps.setBinaryStream(2, bodyIn, fileIn.length());
+
+// Test 3 - This works with JDBC 3.0 drivers
+      File fileIn = new File("MySqlBlobSetBinaryStream.class");
+      ps.setBinaryStream(2, bodyIn, (int) fileIn.length());
+
+      int count = ps.executeUpdate();
+      bodyIn.close();
+      ps.close();
+
+// Retrieving BLOB value with getBytes()
+      sta = con.createStatement(); 
+      ResultSet res = sta.executeQuery("SELECT * FROM Image" 
+        +" WHERE Subject = '"+subject+"'");
+      res.next();
+      System.out.println("The inserted record: "); 
+      System.out.println("   Subject = "+res.getString("Subject"));
+      System.out.println("   Body = "
+        +new String(res.getBytes("Body"),0,32)); 
+      res.close();
+
+      sta.close();
+      con.close();
+    } catch (Exception e) {
+      System.err.println("Exception: "+e.getMessage());
+      e.printStackTrace();
+    }
+  }
+}
+</pre>
+
+<p>As I mentioned above setBinaryStream(int parameterIndex, InputStream 
+x) will not work with JDBC 3.0 drivers.
+Here is what I got with the "Test 1" section open in my program. 
+Remember that mysql-connector-java-5.0.7-bin is a JDBC 3.0 driver.
+</p>
+<pre class="source">C:&gt;java -cp .;\local\lib\mysql-connector-java-5.0.7-bin.jar
+  MySqlBlobSetBinaryStream
+
+Exception in thread "main" java.lang.AbstractMethodError: com.mysql
+  .jdbc.PreparedStatement.setBinaryStream(ILjava/io/InputStream;)V
+  at MySqlBlobSetBinaryStream.main(MySqlBlobSetBinaryStream.java:34)
+</pre>
+
+<p>"Test 2" also failed for the same reason - fileIn.length() returns "long" and that setCharacterStream(int, InputStream, long) 
+is JDBC 4.0 method:
+</p>
+<pre class="source">C:&gt;java -cp .;\local\lib\mysql-connector-java-5.0.7-bin.jar
+  MySqlBlobSetBinaryStream
+
+Exception in thread "main" java.lang.AbstractMethodError: com.mysql
+  .jdbc.PreparedStatement.setBinaryStream(ILjava/io/InputStream;J)V
+  at MySqlBlobSetBinaryStream.main(MySqlBlobSetBinaryStream.java:38)
+</pre>
+
+<p>Of course, "Test 3" worked nicely. 
+</p>
+<pre class="source">C:&gt;java -cp .;\local\lib\mysql-connector-java-5.0.7-bin.jar
+  MySqlBlobSetBinaryStream
+
+The inserted record:
+   Subject = Test of setBinaryStream() methods
+   Body = -||+   2 |
+ ; H I
+ ? J
+ ? K
+</pre>
+
+<p><script language="JavaScript">bannerBottom("");</script><script src="Inserting%20BLOB%20Values%20with%20setBinaryStream%28%29%20Method_files/show_ads.htm" type="text/javascript">x=1;</script>
+</p><p class="blockTitle">Table of Contents</p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/About-JDBC-Tutorials.html">About This Book</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/JDBC-Introduction.html">JDBC (Java Database Connectivity) Introduction</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/JDK-Java-SE-Installation.html">Downloading and Installing JDK - Java SE</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/Java-DB-Installation.html">Installing and Running Java DB - Derby</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/Derby-JDBC-Drivers.html">Derby (Java DB) JDBC Driver</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/Derby-JDBC-DataSource.html">Derby (Java DB) JDBC DataSource Objects</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/Derby-DML-Statements.html">Java DB (Derby) - DML Statements</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/Derby-Query-ResultSet.html">Java DB (Derby) - ResultSet Objects of Queries</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/Derby-PreparedStatement.html">Java DB (Derby) - PreparedStatement</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/MySQL-Installation-and-Setup.html">MySQL Installation on Windows</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/MySQL-JDBC-Driver.html">MySQL JDBC Driver (MySQL Connector/J)</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/MySQL-PreparedStatement.html">MySQL - PreparedStatement</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/MySQL-JdbcRowSet-Implementation.html">MySQL - Reference Implementation of JdbcRowSet</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/MySQL-CallableStatement.html">MySQL - JBDC CallableStatement</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/MySQL-CLOB-Large-Object.html">MySQL CLOB (Character Large Object) - TEXT</a></p>
+<p class="bookToc"><span class="dotOn">►</span><a href="http://www.herongyang.com/JDBC/MySQL-BLOB-Large-Object.html">MySQL BLOB (Binary Large Object) - BLOB</a></p>
+
+<p class="chapterToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/MySQL-BLOB-Overview.html">Overview of BLOB (Binary Large Object)</a></p>
+<p class="chapterToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/MySQL-BLOB-Columns-CREATE-TABLE.html">Create Tables with CLOB Columns</a></p>
+<p class="chapterToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/MySQL-BLOB-SQL-INSERT.html">Inserting BLOB Values with SQL INSERT Statements</a></p>
+<p class="chapterToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/MySQL-CLOB-setBytes.html">Inserting BLOB Values with setBytes() Method</a></p>
+<p class="chapterToc"><span class="dotOn">►</span><a href="http://www.herongyang.com/JDBC/MySQL-BLOB-setBinaryStream.html">Inserting BLOB Values with setBinaryStream() Method</a></p>
+<p class="chapterToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/MySQL-BLOB-setBinaryStream-Error.html">Closing InputStream Too Early on setBinaryStream()</a></p>
+<p class="chapterToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/MySQL-BLOB-getBytes.html">Retrieving BLOB Values with getBytes() Method</a></p>
+<p class="chapterToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/MySQL-BLOB-getBinaryStream.html">Retrieving BLOB Values with getBinaryStream() Method</a></p>
+<p class="chapterToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/MySQL-CLOB-getBlob.html">Retrieving BLOB Values with getBlob() Method</a></p>
+<p class="chapterToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/MySQL-BLOB-setBlob.html">Inserting BLOB Values with setBlob() Method</a></p>
+
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/Oracle-Installation-and-Setup.html">Oracle Express Edition Installation on Windows</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/Oracle-JDBC-Drivers.html">Oracle JDBC Drivers</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/Oracle-JdbcRowSet-Implementation.html">Oracle - Reference Implementation of JdbcRowSet</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/Oracle-PreparedStatement.html">Oracle - PreparedStatement</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/Oracle-CallableStatement.html">Oracle - JBDC CallableStatement</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/Oracle-CLOB-Large-Object.html">Oracle CLOB (Character Large Object) - TEXT</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/Oracle-BLOB-Large-Object.html">Oracle BLOB (Binary Large Object) - BLOB</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/SQL-Server-2005-Express-Edition.html">Microsoft SQL Server 2005 Express Edition</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/sqljdbc-jar-Microsoft-JDBC-Driver.html">Microsoft JDBC Driver for SQL Server - sqljdbc.jar</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/sqljdbc-jar-Query-Result-Set.html">Microsoft JDBC Driver - Query Statements and Result Sets</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/sqljdbc-jar-DatabaseMetaData.html">Microsoft JDBC Driver - DatabaseMetaData Object</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/sqljdbc-jar-DDL-Statements.html">Microsoft JDBC Driver - DDL Statements</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/sqljdbc-jar-DML-Statements.html">Microsoft JDBC Driver - DML Statements</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/SQL-Server-PreparedStatement.html">SQL Server - PreparedStatement</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/SQL-Server-CLOB-Large-Object.html">SQL Server CLOB (Character Large Object) - TEXT</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/SQL-Server-BLOB-Large-Object.html">SQL Server BLOB (Binary Large Object) - BLOB</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/JDBC-ODBC-Bridge-Driver.html">JDBC-ODBC Bridge Driver - sun.jdbc.odbc.JdbcOdbcDriver</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/JDBC-ODBC-Flat-Text-File.html">JDBC-ODBC Bridge Driver - Flat Text Files</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/JDBC-ODBC-MS-Access.html">JDBC-ODBC Bridge Driver - MS Access</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/JDBC-ODBC-SQL-Server.html">JDBC-ODBC Bridge Driver - MS SQL Server</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/Summary-Database-Servers.html">Summary of JDBC Drivers and Database Servers</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/To-Do-List.html">Additional Tutorial Notes to Be Added</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/References.html">References</a></p>
+<p class="bookToc"><span class="dotOff">&nbsp;</span><a href="http://www.herongyang.com/JDBC/pdf.html">PDF Printing Version</a></p>
+<script type="text/javascript">writePageFooter("http://www.herongyang.com/JDBC/", "MySQL-BLOB-setBinaryStream.html");</script><p><style type="text/css">@import url(http://www.google.com/cse/api/branding.css);</style></p><div class="cse-branding-right" style="background-color:#FFFFFF;color:#000000">  <div class="cse-branding-form">    <form action="http://www.google.com/cse" id="cse-search-box">      <div>        <input name="cx" value="partner-pub-8765173615603734:r71ave-ebp4" type="hidden">        <input name="ie" value="ISO-8859-1" type="hidden">        <input name="q" size="41" type="text">        <input name="sa" value="Search" type="submit">      </div>    </form>  </div>  <div class="cse-branding-logo">    <img src="Inserting%20BLOB%20Values%20with%20setBinaryStream%28%29%20Method_files/poweredby_FFFFFF.gif" alt="Google">  </div>  <div class="cse-branding-text">    Custom Search  </div></div><p></p><p class="copyright">Copyright © 2014 by Dr. Herong Yang. All rights reserved.</p>
+<!-- section end -->
+</td></tr></tbody></table></td></tr><tr><td colspan="3" class="pageLine"><img src="Inserting%20BLOB%20Values%20with%20setBinaryStream%28%29%20Method_files/_dot.gif" height="1" width="100%"></td></tr><tr><td colspan="3" align="right"><script language="JavaScript">writeMenu("http://www.herongyang.com/JDBC/", "MySQL-BLOB-setBinaryStream.html");</script><b><a href="http://www.herongyang.com/index.html"><img src="Inserting%20BLOB%20Values%20with%20setBinaryStream%28%29%20Method_files/favicon.ico" border="0" align="absmiddle"></a> [ <a href="http://www.herongyang.com/index.html">Home</a> | <a href="http://www.herongyang.com/site_map.html">Site Map</a> | <a href="http://www.herongyang.com/search.html">Search</a> | <a href="http://www.herongyang.com/comments/?TopicID=2">Comments</a> ]&nbsp; &nbsp; [ <a href="http://www.herongyang.com/JDBC/pdf.html">PDF</a> | <a href="http://www.herongyang.com/JDBC/atom.xml">RSS</a> | <a href="http://www.herongyang.com/JDBC/index.html">Index</a> ]</b></td></tr><tr><td colspan="3"><b>Inserting BLOB Values with setBinaryStream() Method</b> - <span class="small">Updated in 2014, by Dr. Herong Yang</span></td></tr></tbody></table></td></tr></tbody></table></td><td rowspan="1" width="1"><img src="Inserting%20BLOB%20Values%20with%20setBinaryStream%28%29%20Method_files/_dot.gif" height="100%" width="1"></td></tr><tr><td colspan="3" height="1"><img src="Inserting%20BLOB%20Values%20with%20setBinaryStream%28%29%20Method_files/_dot.gif" height="1" width="100%"></td></tr></tbody></table></td><td class="frameRight"><script language="JavaScript">writeRight("http://www.herongyang.com/JDBC/", "MySQL-BLOB-setBinaryStream.html");</script><img src="Inserting%20BLOB%20Values%20with%20setBinaryStream%28%29%20Method_files/_dot.gif" height="1" width="220"><p class="g_key">Programming Tutorial Books</p><p class="g_key"><a href="http://www.herongyang.com/Android/">Android Tutorial Examples</a></p><p class="g_key"><a href="http://www.herongyang.com/ASP/">ASP Tutorial Examples</a></p><p class="g_key"><a href="http://www.herongyang.com/C-Sharp/">C# Tutorial Examples</a></p><p class="g_key"><a href="http://www.herongyang.com/Flash/">Flash Tutorial Examples</a></p><p class="g_key"><a href="http://www.herongyang.com/Free-Web-Service/">Free Web Services</a></p><p class="g_key"><a href="http://www.herongyang.com/Java/">Java Tutorial Examples</a></p><p class="g_key"><a href="http://www.herongyang.com/JDK/">JDK Tutorial Examples</a></p><p class="g_key"><a href="http://www.herongyang.com/Java-Tools/">Java Tools Tutorials</a></p><p class="g_key"><a href="http://www.herongyang.com/JVM/">JVM Tutorial Examples</a></p><p class="g_key"><a href="http://www.herongyang.com/JDBC/">JDBC Tutorial Examples</a></p><p class="g_key"><a href="http://www.herongyang.com/Swing/">Java Swing Tutorials</a></p><p class="g_key"><a href="http://www.herongyang.com/JavaScript/">JavaScript Tutorial Examples</a></p><p class="g_key"><a href="http://www.herongyang.com/JSP">JSP Tutorial Examples</a></p><p class="g_key"><a href="http://www.herongyang.com/MySQL">MySQL Tutorial Examples</a></p><p class="g_key"><a href="http://www.herongyang.com/Perl">Perl Tutorial Examples</a></p><p class="g_key"><a href="http://www.herongyang.com/sort">Sorting Algorithms</a></p><p class="g_key"><a href="http://www.herongyang.com/php">PHP Tutorial Examples</a></p><p class="g_key"><a href="http://www.herongyang.com/VBScript/">VBScript Tutorial Examples</a></p><p class="g_key"><a href="http://www.herongyang.com/Web-Services">SOAP &amp; Web Service</a></p><p class="g_key"><a href="http://www.herongyang.com/WSDL">WSDL Tutorial Examples</a></p><p class="g_key"><a href="http://www.herongyang.com/xhtml">XSLT &amp; XHTML Tutorials</a></p><p class="g_key"><a href="http://www.herongyang.com/xml">XML Technology Tutorials</a></p><p class="g_key"><a href="http://www.herongyang.com/XML-Schema/">XML Schema (XSD) Tutorials</a></p><p class="g_key"><a href="http://www.herongyang.com/site_map.html">All books...</a></p><img src="Inserting%20BLOB%20Values%20with%20setBinaryStream%28%29%20Method_files/_dot.gif" height="1" width="220"><p class="g_key">Other Tutorial Books</p><p class="g_key"><a href="http://www.herongyang.com/PKI">PKI Tutorial Examples</a></p><p class="g_key"><a href="http://www.herongyang.com/Cryptography/">Cryptography Tutorial Examples</a></p><p class="g_key"><a href="http://www.herongyang.com/encoding">Data Encoding Tutorial</a></p><p class="g_key"><a href="http://www.herongyang.com/gb2312">GB2312 Character Set</a></p><p class="g_key"><a href="http://www.herongyang.com/PHP-Chinese/">Chinese Web Sites using PHP</a></p><p class="g_key"><a href="http://www.herongyang.com/unicode">Unicode Tutorial Examples</a></p><p class="g_key"><a href="http://www.herongyang.com/Computer-History">Computer History</a></p><p class="g_key"><a href="http://www.herongyang.com/CD-DVD/">CD/DVD Tutorial Examples</a></p><p class="g_key"><a href="http://www.herongyang.com/Windows">Windows Tutorial Examples</a></p><p class="g_key"><a href="http://www.herongyang.com/Windows-Security">Windows Security Tutorials</a></p><p class="g_key"><a href="http://www.herongyang.com/year">200 Years of Chinese Calendar</a></p><p class="g_key"><a href="http://www.herongyang.com/astrology_horoscope">Astrology and Horoscope</a></p><p class="g_key"><a href="http://www.herongyang.com/hyPub">Publishing Books using XML</a></p><p class="g_key"><a href="http://www.herongyang.com/site_map.html">All books...</a></p><img src="Inserting%20BLOB%20Values%20with%20setBinaryStream%28%29%20Method_files/_dot.gif" height="1" width="200"><p class="g_key">Books in Chinese</p><p class="g_key"><a href="http://www.herongyang.com/gb2312_gb">In Chinese: GB2312 Character Set</a></p><p class="g_key"><a href="http://www.herongyang.com/xhtml_gb">In Chinese: XSLT &amp; XHTML</a></p><p class="g_key"><a href="http://www.herongyang.com/Year_zh">Simplified Chinese Calendars</a></p><p class="g_key"><a href="http://www.herongyang.com/Year_zh_TW">Traditional Chinese Calendars</a></p><img src="Inserting%20BLOB%20Values%20with%20setBinaryStream%28%29%20Method_files/_dot.gif" height="1" width="200"><p class="g_key">Copyright © 2014 Dr. Herong Yang</p><p class="g_des">All rights reserved.</p></td></tr><tr><td colspan="3" class="frameBottom"><script language="JavaScript">writeBottom("http://www.herongyang.com/JDBC/", "MySQL-BLOB-setBinaryStream.html");</script><p class="g_des" align="center"><a href="http://www.digits.com/" target="_blank">WebCounter:</a> <img src="Inserting%20BLOB%20Values%20with%20setBinaryStream%28%29%20Method_files/a.png" alt="Hit Counter by Digits" border="0" align="middle" height="16" width="80"></p></td></tr></tbody></table></div></body></html>

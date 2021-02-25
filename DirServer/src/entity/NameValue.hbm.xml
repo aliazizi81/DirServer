@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="entity.NameValue" table="name_value">  
+    <id column="name" name="name"/>
+    <property column="is_file" name="isFile"/>
+    <property column="value" name="value"/>
+    <property column="f_value" name="fValue"/>
+  </class>
+</hibernate-mapping>
